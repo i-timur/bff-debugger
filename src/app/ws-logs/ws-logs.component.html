@@ -1,0 +1,9 @@
+<button type="button" (click)="logService.connect()">
+  Connect
+</button>
+
+<div class="log-container">
+  <div *ngFor="let message of messages$ | async" class="log-line">
+    {{ message }}
+  </div>
+</div>
