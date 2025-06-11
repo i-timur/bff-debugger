@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "BFF Debugger",
+  "version": "1.0",
+  "description": "Debug tool for Backend-For-Frontend applications",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "BFF Debugger"
+  },
+  "permissions": ["webRequest", "storage", "tabs"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "devtools_page": "index.html"
+}

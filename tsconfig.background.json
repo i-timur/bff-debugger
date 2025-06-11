@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "ES2022",
+    "outDir": "./dist/browser",
+    "types": ["chrome"]
+  },
+  "include": [
+    "src/background.ts",
+    "src/background.module.ts",
+    "src/app/services/websocket.service.ts"
+  ]
+}

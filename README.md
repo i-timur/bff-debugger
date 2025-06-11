@@ -1,59 +1,134 @@
-# BffLogger
+# BFF Debugger Chrome Extension
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
+A Chrome extension for debugging Backend-For-Frontend (BFF) applications. This extension provides real-time monitoring of network requests and console output from your BFF server.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Real-time network request monitoring
+- Request/response details inspection
+- Console output monitoring
+- WebSocket connection to BFF server
+- Modern UI with ng-zorro components
 
-```bash
-ng serve
+## Installation
+
+1. Clone this repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Build the extension:
+   ```bash
+   npm run build
+   ```
+4. Load the extension in Chrome:
+   - Open Chrome and go to `chrome://extensions/`
+   - Enable "Developer mode"
+   - Click "Load unpacked"
+   - Select the `dist/browser` directory
+
+## Usage
+
+1. Open Chrome DevTools (F12 or right-click -> Inspect)
+2. Go to the "BFF Debugger" tab
+3. The extension will automatically connect to your BFF server at `ws://localhost:3000`
+4. Monitor network requests and console output in real-time
+
+## Development
+
+1. Start the development server:
+   ```bash
+   npm start
+   ```
+2. Build the extension in watch mode:
+   ```bash
+   npm run watch
+   ```
+
+## Backend Integration
+
+To integrate with your BFF server, you need to implement a WebSocket server that sends events in the following format:
+
+```typescript
+// Request Started Event
+{
+  type: 'requestStarted',
+  requestId: string,
+  data: {
+    id: string,
+    method: string,
+    url: string,
+    headers: object,
+    body: any,
+    timestamp: string,
+    state: 'pending',
+    timing: {
+      startTime: number,
+      endTime: number,
+      dnsStart: number,
+      dnsEnd: number,
+      connectStart: number,
+      connectEnd: number,
+      sslStart: number,
+      sslEnd: number,
+      sendStart: number,
+      sendEnd: number,
+      receiveHeadersStart: number,
+      receiveHeadersEnd: number,
+      receiveBodyStart: number,
+      receiveBodyEnd: number
+    }
+  },
+  timing: RequestTiming
+}
+
+// Request Completed Event
+{
+  type: 'requestEnded',
+  requestId: string,
+  data: {
+    request: RequestData,
+    response: {
+      id: string,
+      statusCode: number,
+      headers: object,
+      body: any,
+      state: 'completed',
+      timing: RequestTiming,
+      timestamp: string
+    }
+  },
+  timing: RequestTiming
+}
+
+// Request Failed Event
+{
+  type: 'requestFailed',
+  requestId: string,
+  data: {
+    request: RequestData,
+    error: {
+      id: string,
+      error: string,
+      state: 'failed',
+      timing: RequestTiming,
+      timestamp: string
+    }
+  },
+  timing: RequestTiming
+}
+
+// Console Output Event
+{
+  type: 'stdout',
+  data: {
+    level: 'info' | 'warn' | 'error' | 'debug',
+    message: string,
+    data?: any
+  }
+}
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## License
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+MIT
