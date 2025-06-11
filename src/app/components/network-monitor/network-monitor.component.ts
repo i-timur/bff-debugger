@@ -35,7 +35,7 @@ import {
         #networkTable
         tableScroll="scroll"
         [nzData]="requests"
-        [nzScroll]="{ y: 'calc(100vh - 100px)' }"
+        [nzScroll]="{ y: 'calc(100vh - 144px)' }"
         [nzShowPagination]="false"
         [nzFrontPagination]="false"
       >

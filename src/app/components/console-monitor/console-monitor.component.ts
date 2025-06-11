@@ -37,7 +37,7 @@ interface LogEntry {
         #consoleTable
         tableScroll="scroll"
         [nzData]="logs"
-        [nzScroll]="{ y: 'calc(100vh - 500px)' }"
+        [nzScroll]="{ y: 'calc(100vh - 144px)' }"
         [nzShowPagination]="false"
         [nzFrontPagination]="false"
       >
