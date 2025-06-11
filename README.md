@@ -8,7 +8,6 @@ A Chrome extension for debugging Backend-For-Frontend (BFF) applications. This e
 - Request/response details inspection
 - Console output monitoring
 - WebSocket connection to BFF server
-- Modern UI with ng-zorro components
 
 ## Installation
 
