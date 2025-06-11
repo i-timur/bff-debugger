@@ -26,6 +26,7 @@ import {
     <div class="network-monitor">
       <div class="toolbar">
         <button nz-button nzType="primary" (click)="clearRequests()">
+          <span nz-icon nzType="delete"></span>
           Clear
         </button>
       </div>
@@ -34,7 +35,7 @@ import {
         #networkTable
         tableScroll="scroll"
         [nzData]="requests"
-        [nzScroll]="{ y: 'calc(100vh - 500px)' }"
+        [nzScroll]="{ y: 'calc(100vh - 100px)' }"
         [nzShowPagination]="false"
         [nzFrontPagination]="false"
       >
@@ -177,14 +178,28 @@ import {
   `,
   styles: [
     `
+      :host {
+        display: block;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
       .network-monitor {
         height: 100%;
         display: flex;
         flex-direction: column;
+        background: #ffffff;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+          'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
       }
       .toolbar {
         padding: 8px;
         border-bottom: 1px solid #f0f0f0;
+        background: #ffffff;
+        position: sticky;
+        top: 0;
+        z-index: 1;
       }
       .request-details {
         padding: 16px;
@@ -196,6 +211,8 @@ import {
       .detail-section h4 {
         margin-bottom: 8px;
         color: #666;
+        font-size: 13px;
+        font-weight: 500;
       }
       .section-header {
         display: flex;
@@ -218,11 +235,13 @@ import {
         margin: 0;
         overflow: auto;
         max-height: 300px;
+        font-size: 12px;
+        line-height: 1.5;
       }
       .detail-section pre.payload {
         font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas',
           'source-code-pro', monospace;
-        font-size: 13px;
+        font-size: 12px;
         line-height: 1.5;
         color: #333;
         background: #f8f8f8;
@@ -232,6 +251,32 @@ import {
         color: #ff4d4f;
         background: #fff2f0;
         border-color: #ffccc7;
+      }
+      ::ng-deep {
+        .ant-table {
+          font-size: 12px;
+        }
+        .ant-table-thead > tr > th {
+          background: #fafafa;
+          font-weight: 500;
+          padding: 8px 16px;
+        }
+        .ant-table-tbody > tr > td {
+          padding: 8px 16px;
+        }
+        .ant-tag {
+          font-size: 12px;
+          line-height: 1.5;
+          padding: 0 7px;
+        }
+        .ant-btn {
+          font-size: 12px;
+          height: 24px;
+          padding: 0 8px;
+        }
+        .ant-btn .anticon {
+          font-size: 12px;
+        }
       }
     `,
   ],

@@ -32,6 +32,6 @@ import { ConsoleMonitorComponent } from './components/console-monitor/console-mo
     ConsoleMonitorComponent,
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [],
 })
 export class AppModule {}

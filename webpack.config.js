@@ -1,9 +1,11 @@
 const path = require("path");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   mode: "production",
   entry: {
     background: "./src/background.ts",
+    devtools: "./src/devtools.ts",
   },
   output: {
     filename: "[name].js",
@@ -31,4 +33,14 @@ module.exports = {
   optimization: {
     minimize: false,
   },
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "src/assets/icon.svg",
+          to: "assets/icon.png",
+        },
+      ],
+    }),
+  ],
 };
